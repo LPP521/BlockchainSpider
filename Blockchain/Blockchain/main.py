@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from scrapy.cmdline import execute
 
 import sys
@@ -19,6 +20,8 @@ print(os.path.dirname(os.path.abspath(__file__)))
 # execute(["scrapy", "crawl" , "jinse"])
 
 execute(["scrapy", "crawl" , "eightbtc"])
+
+# execute(["scrapy", "crawl" , "btc798"])
 
 # execute(["scrapy", "crawl" , "bitkan"])
 

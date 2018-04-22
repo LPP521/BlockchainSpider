@@ -35,6 +35,11 @@ DOWNLOAD_DELAY = 0.5
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False
 
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+SCHEDULER_PERSIST = True
+SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderQueue'
+
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
 
@@ -65,9 +70,10 @@ DOWNLOAD_DELAY = 0.5
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'Blockchain.pipelines.BlockchainPipeline': 300,
+   # 'Blockchain.pipelines.BlockchainPipeline': 300,
    # 'Blockchain.pipelines.JsonWithEncodingPipeline': 200,
-   'Blockchain.pipelines.MysqlTwistedPipeline': 200,
+   # 'Blockchain.pipelines.MysqlTwistedPipeline': 200,
+   'scrapy_redis.pipelines.RedisPipeline':100
 
 }
 
@@ -93,11 +99,14 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 # mysql基本信息
-MYSQL_HOST = "127.0.0.1"
-MYSQL_DBNAME = "Blockchain"
-MYSQL_USER = "root"
-MYSQL_PASSWORD = "12345678"
+# MYSQL_HOST = "127.0.0.1"
+# MYSQL_DBNAME = "Blockchain"
+# MYSQL_USER = "root"
+# MYSQL_PASSWORD = "12345678"
 
-# LOG_ENABLED = True
+REDIS_HOST = '182.61.58.96'
+REDIS_PORT = 6379
+
+LOG_ENABLED = True
 SQL_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 SQL_DATE_FORMAT = "%Y-%m-%d"

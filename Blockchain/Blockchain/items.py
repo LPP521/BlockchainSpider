@@ -16,10 +16,16 @@ from scrapy.loader.processors import TakeFirst, MapCompose, Join
 from w3lib.html import remove_tags
 
 
+# 把对应的内容，去掉标签、空格、空行
+def get_remove_tag(value):
+    content = remove_tags(value)
+    return re.sub(r'[\t\r\n\s]', '', content)
+
 class BlockchainItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
+
 
 class EightbtcItem(scrapy.Item):
     url = scrapy.Field(output_processor=TakeFirst(),)
@@ -71,6 +77,28 @@ class BitkanItem(scrapy.Item):
         # 插入表的sql语句
         insert_sql = """
            insert into bitkan(url , title, publish_time,content) VALUES (%s, %s, %s,%s )
+        """
+        params = (
+            self["url"],
+            self["title"],
+            self["publish_time"],
+            self["content"],
+        )
+
+        return insert_sql, params
+
+class Btc798Item(scrapy.Item):
+    url = scrapy.Field(output_processor=TakeFirst(),)
+    title = scrapy.Field(output_processor=TakeFirst(),)
+    publish_time = scrapy.Field(
+        input_processor=MapCompose(get_remove_tag),
+        output_processor=Join(),)
+    content = scrapy.Field(output_processor=Join('<br>'))
+
+    def get_insert_sql(self):
+        # 插入表的sql语句
+        insert_sql = """
+           insert into btc798(url , title, publish_time,content) VALUES (%s, %s, %s,%s )
         """
         params = (
             self["url"],
