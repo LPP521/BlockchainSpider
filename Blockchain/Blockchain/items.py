@@ -87,6 +87,7 @@ class BitkanItem(scrapy.Item):
 
         return insert_sql, params
 
+# 比特币之家新闻字段及处理
 class Btc798Item(scrapy.Item):
     url = scrapy.Field(output_processor=TakeFirst(),)
     title = scrapy.Field(output_processor=TakeFirst(),)

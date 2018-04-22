@@ -23,7 +23,7 @@ class EightbtcaSpider(RedisCrawlSpider):
     )
 
     def parse_item(self, response):
-        
+
         I = ItemLoader(item=EightbtcItem(), response=response)
         I.add_xpath('title', '//div[@class="article-title"]/h1/text()')
         I.add_xpath('publish_time', '//div[@class="single-crumbs clearfix"]/span/time/text()')

@@ -3,12 +3,16 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.loader import ItemLoader
+from scrapy_redis.spiders import RedisCrawlSpider
 from Blockchain.items import Btc798Item
 
-class Btc798Spider(CrawlSpider):
+# class Btc798Spider(CrawlSpider):
+class Btc798Spider(RedisCrawlSpider):
+
     name = 'btc798'
     allowed_domains = ['btc798.com']
-    start_urls = ['http://www.btc798.com/cate/4.html']
+    # start_urls = ['http://www.btc798.com/cate/4.html']
+    redis_key = 'btc798:start_urls'
 
     rules = (
         Rule(LinkExtractor(allow=r'btc798.com/home/cate/index/id/4/m/Home/p/3.html')),
