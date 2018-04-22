@@ -26,7 +26,7 @@ class BlockchainItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
-
+# 巴比特网站item字段
 class EightbtcItem(scrapy.Item):
     url = scrapy.Field(output_processor=TakeFirst(),)
     title = scrapy.Field(output_processor=TakeFirst(),)
