@@ -47,6 +47,7 @@ class EightbtcItem(scrapy.Item):
 
         return insert_sql, params
 
+# 金色财经网站字段及处理
 class JinseItem(scrapy.Item):
     url = scrapy.Field(output_processor=TakeFirst(),)
     title = scrapy.Field(output_processor=TakeFirst(),)

@@ -2,13 +2,18 @@
 import scrapy
 from scrapy.loader import ItemLoader
 from Blockchain.items import JinseItem
+from scrapy_redis.spiders import RedisSpider
 from scrapy.loader.processors import TakeFirst, MapCompose, Join
 import json
 
-class JinseSpider(scrapy.Spider):
+# class JinseSpider(scrapy.Spider):
+class JinseSpider(RedisSpider):
     name = 'jinse'
     allowed_domains = ['jinse.com']
-    start_urls = ['https://api.jinse.com/v4/information/list/?catelogue_key=www&information_id=22717&limit=3&flag=down&version=9.9.9']
+
+    # 起始地址
+    # start_urls = ['https://api.jinse.com/v4/information/list/?catelogue_key=www&information_id=22717&limit=3&flag=down&version=9.9.9']
+    redis_key = 'jinsespider:start_urls'
 
     # def parse(self, response):
     #     item = JinseItem()
