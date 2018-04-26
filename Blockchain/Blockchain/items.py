@@ -31,7 +31,7 @@ class EightbtcItem(scrapy.Item):
     url = scrapy.Field(output_processor=TakeFirst(),)
     title = scrapy.Field(output_processor=TakeFirst(),)
     publish_time = scrapy.Field(output_processor=TakeFirst(),)
-    content = scrapy.Field(output_processor=Join('<br>'))
+    content = scrapy.Field(output_processor=Join(''))
 
     def get_insert_sql(self):
         # 插入表的sql语句
@@ -52,7 +52,7 @@ class JinseItem(scrapy.Item):
     url = scrapy.Field(output_processor=TakeFirst(),)
     title = scrapy.Field(output_processor=TakeFirst(),)
     publish_time = scrapy.Field(output_processor=TakeFirst(),)
-    content = scrapy.Field(output_processor=Join('<br>'))
+    content = scrapy.Field(output_processor=Join(''))
 
     def get_insert_sql(self):
         # 插入表的sql语句
@@ -72,7 +72,7 @@ class BitkanItem(scrapy.Item):
     url = scrapy.Field(output_processor=TakeFirst(),)
     title = scrapy.Field(output_processor=TakeFirst(),)
     publish_time = scrapy.Field(output_processor=TakeFirst(),)
-    content = scrapy.Field(output_processor=Join('<br>'))
+    content = scrapy.Field(output_processor=Join(''))
 
     def get_insert_sql(self):
         # 插入表的sql语句
@@ -95,7 +95,7 @@ class Btc798Item(scrapy.Item):
     publish_time = scrapy.Field(
         input_processor=MapCompose(get_remove_tag),
         output_processor=Join(),)
-    content = scrapy.Field(output_processor=Join('<br>'))
+    content = scrapy.Field(output_processor=Join(''))
 
     def get_insert_sql(self):
         # 插入表的sql语句

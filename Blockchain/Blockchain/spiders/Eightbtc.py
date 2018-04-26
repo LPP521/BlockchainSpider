@@ -13,7 +13,7 @@ class EightbtcaSpider(RedisCrawlSpider):
     name = 'eightbtc'
     allowed_domains = ['8btc.com']
     # start_urls = ['http://www.8btc.com/sitemap?newPost=1&pg=1']
-    redis_key = "eightspider:start_urls"
+    redis_key = "eightbtcspider:start_urls"
     rules = (
         # Rule(LinkExtractor(allow=r'.*8btc.com/sitemap?newPost=1&pg=\d+')),
         # 第一层级，匹配出每个新闻列表页面

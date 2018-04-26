@@ -12,10 +12,10 @@ class Btc798Spider(RedisCrawlSpider):
     name = 'btc798'
     allowed_domains = ['btc798.com']
     # start_urls = ['http://www.btc798.com/cate/4.html']
-    redis_key = 'btc798:start_urls'
+    redis_key = 'btc798spider:start_urls'
 
     rules = (
-        Rule(LinkExtractor(allow=r'btc798.com/home/cate/index/id/4/m/Home/p/3.html')),
+        Rule(LinkExtractor(allow=r'btc798.com/home/cate/index/id/4/m/Home/p/\d+.html')),
         Rule(LinkExtractor(allow=r'articles/\d+'),callback='parse_item'),
     )
 
